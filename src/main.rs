@@ -14,7 +14,7 @@ fn main() {
     let mut decrypt: bool = false; // Is decrypting
     let mut encrypt: bool = false; // Is encrypting
     for (index, arg) in args.iter().enumerate() {
-        if arg == "-o" || arg == "--output" {
+        if {arg == "-o" || arg == "--output"} && outfile.is_empty(){
             outfile = args[index+1].clone();
         }
         if arg == "-d" || arg == "--decrypt" {
@@ -30,12 +30,8 @@ fn main() {
     }
     if args.len() == 3 || {args.len() == 5 && outfile.is_empty()} {
         infile = args[args.len()-1].clone();
-        if encrypt && decrypt {
-            println!("Error: cannot both encrypt and decrypt");
-            return
-        }
-        else if encrypt == false && decrypt == false {
-            println!("Error: you should specify decrypt or encrypt");
+        if encrypt == decrypt {
+            println!("Error: check arguments, must be either decrypt or encrypt, not both, not without it.\nFor more info type {} -h", args[0]);
             return
         }
         else if !infile.is_empty() {
