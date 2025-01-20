@@ -28,7 +28,7 @@ fn main() {
             return
         }
     }
-    if args.len() == 2 || {args.len() == 4 && outfile.is_empty()} {
+    if args.len() == 3 || {args.len() == 5 && outfile.is_empty()} {
         infile = args[args.len()-1].clone();
         if encrypt && decrypt {
             println!("Error: cannot both encrypt and decrypt");
