@@ -9,10 +9,10 @@ use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut infile: String;
-    let mut outfile: String;
-    let mut decrypt: bool = false;
-    let mut encrypt: bool = false;
+    let mut infile: String = String::new(); // input file name/path 
+    let mut outfile: String = String::new(); // output file name/path
+    let mut decrypt: bool = false; // Is decrypting
+    let mut encrypt: bool = false; // Is encrypting
     if args.len() > 1 {
         for (index, arg) in args.iter().enumerate() {
             if arg == "-o" || arg == "--output" {
@@ -24,12 +24,41 @@ fn main() {
             if arg == "-e" || arg == "--encrypt" {
                 encrypt = true;
             }
+            if arg == "-h" || arg == "--help" {
+                println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0]);
+                break
+            }
         }
+
+        infile = args[args.len()-1].clone();
         if encrypt && decrypt {
             println!("Error: cannot both encrypt and decrypt");
         }
+        else if encrypt == false && decrypt == false {
+            println!("Error: you should specify decrypt or encrypt");
+        }
+        else if !infile.is_empty() {
+            if encrypt {
+                encryptfile(infile, outfile);
+            }
+            else if decrypt {
+                decryptfile(infile, outfile);
+            }
+        }
     }
-    else if args.len() < 1 {
+    else if args.len() <= 1 {
         println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0])
+    }
+}
+
+fn encryptfile(infile: String, mut outfile: String) {
+    if outfile.is_empty() {
+        outfile = {infile + "_encrypted"}.to_string();
+    }
+}
+
+fn decryptfile(infile: String, mut outfile: String) {
+    if outfile.is_empty() {
+        outfile = {infile + "_decrypted"}.to_string();
     }
 }
