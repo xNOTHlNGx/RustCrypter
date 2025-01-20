@@ -13,23 +13,22 @@ fn main() {
     let mut outfile: String = String::new(); // output file name/path
     let mut decrypt: bool = false; // Is decrypting
     let mut encrypt: bool = false; // Is encrypting
-    if args.len() > 1 {
-        for (index, arg) in args.iter().enumerate() {
-            if arg == "-o" || arg == "--output" {
-                outfile = args[index+1].clone();
-            }
-            if arg == "-d" || arg == "--decrypt" {
-                decrypt = true;
-            }
-            if arg == "-e" || arg == "--encrypt" {
-                encrypt = true;
-            }
-            if arg == "-h" || arg == "--help" {
-                println!("Help: {} -o <output> [-d] [-e] <input_file>", args[0]);
-                return
-            }
+    for (index, arg) in args.iter().enumerate() {
+        if arg == "-o" || arg == "--output" {
+            outfile = args[index+1].clone();
         }
-
+        if arg == "-d" || arg == "--decrypt" {
+            decrypt = true;
+        }
+        if arg == "-e" || arg == "--encrypt" {
+            encrypt = true;
+        }
+        if arg == "-h" || arg == "--help" {
+            println!("Help: {} -o <output> [-d] [-e] <input_file>", args[0]);
+            return
+        }
+    }
+    if args.len() == 2 || {args.len() == 4 && outfile.is_empty()} {
         infile = args[args.len()-1].clone();
         if encrypt && decrypt {
             println!("Error: cannot both encrypt and decrypt");
@@ -49,7 +48,8 @@ fn main() {
         }
     }
     else {
-        println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0])
+        println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0]);
+        return
     }
 }
 
