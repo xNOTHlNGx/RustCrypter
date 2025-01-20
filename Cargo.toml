@@ -5,5 +5,5 @@ edition = "2021"
 
 [dependencies]
 hex = "0.4.3"
-openssl = "0.10.68"
+openssl = { version = "0.10.68", features = ["vendored"] }
 rand = "0.8.5"
