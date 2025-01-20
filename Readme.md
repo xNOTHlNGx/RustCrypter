@@ -18,8 +18,6 @@ AES-256-CBC file crypter written in Rust
 
 ## About The Project
 
-![Product Screenshot](https://picsum.photos/1920/1080)
-
 This is a simple cli program that can help you encrypt some files using AES CBC mode with 256 bit key and 128 bit IV (Initialization Vector). This program can encrypt all types of files, including raw txt files, images and binaries. 
 ### Built With
 
