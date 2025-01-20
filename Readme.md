@@ -56,9 +56,9 @@ Basic usage is
 ## Roadmap
 
 - [x] Add error handling
-- [] Add readable comments
-- [] Optimize code
-- [] Add recursive folder handling
+- [ ] Add readable comments
+- [ ] Optimize code
+- [ ] Add recursive folder handling
 
 ## Acknowledgments
 
