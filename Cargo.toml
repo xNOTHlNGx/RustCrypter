@@ -4,4 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-aes = "0.8.4"
+hex = "0.4.3"
+openssl = "0.10.68"
+rand = "0.8.5"
