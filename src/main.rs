@@ -25,17 +25,19 @@ fn main() {
                 encrypt = true;
             }
             if arg == "-h" || arg == "--help" {
-                println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0]);
-                break
+                println!("Help: {} -o <output> [-d] [-e] <input_file>", args[0]);
+                return
             }
         }
 
         infile = args[args.len()-1].clone();
         if encrypt && decrypt {
             println!("Error: cannot both encrypt and decrypt");
+            return
         }
         else if encrypt == false && decrypt == false {
             println!("Error: you should specify decrypt or encrypt");
+            return
         }
         else if !infile.is_empty() {
             if encrypt {
@@ -46,7 +48,7 @@ fn main() {
             }
         }
     }
-    else if args.len() <= 1 {
+    else {
         println!("Usage: {} -o <output> [-d] [-e] <input_file>", args[0])
     }
 }
