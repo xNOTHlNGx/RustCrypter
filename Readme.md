@@ -4,7 +4,7 @@
 <a href="https://github.com/ShaanCoding/ReadME-Generator">
 <img src="https://cdn-icons-png.flaticon.com/512/1208/1208881.png" alt="Logo" width="80" height="80">
 </a>
-<h3 align="center">ReadME Generator</h3>
+<h3 align="center">RustCrypter</h3>
 <p align="center">
 AES-256-CBC file crypter written in Rust
 
