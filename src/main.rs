@@ -17,7 +17,7 @@ fn main() {
         if {arg == "-o" || arg == "--output"} && outfile.is_empty() {
             outfile = if index+1 != args.len() && !args[index+1].starts_with("-") {args[index+1].clone()} else {println!("Error: output file isn't specified"); return};
             if Path::new(&outfile).is_file() {
-                println!("Error: output file already exists");
+                println!("Error: output file {} already exists", &outfile);
                 return
             }
         }
@@ -64,7 +64,7 @@ fn encryptfile(infile: String, mut outfile: String) {
     let key = rand::thread_rng().gen::<[u8; 32]>();
     let iv = rand::thread_rng().gen::<[u8; 16]>();
     let data = fs::read(&infile)
-        .expect("Should have been able to read the file");
+        .expect(&format!("Error: failed to read file {}", &infile));
     let dataenc = encrypt(
         cipher,
         &key,
@@ -78,32 +78,32 @@ fn encryptfile(infile: String, mut outfile: String) {
         outfile = format!("{}.enc.{}", infilename, infileext);
     }
     if Path::new(&outfile).is_file() {
-        println!("Error: output file already exists");
+        println!("Error: output file {} already exists", &outfile);
         return
     }
     println!("Key (256 bit): {}\nIV (128 bit): {}",hex::encode(&key), hex::encode(&iv));
-    fs::File::create(&outfile).expect("Unable to create file");
-    fs::write(&outfile, dataenc).expect("Unable to write file");
+    fs::File::create(&outfile).expect(&format!("Unable to create file {}", &outfile));
+    fs::write(&outfile, dataenc).expect(&format!("Unable to write file {}", &outfile));
 }
 
 fn decryptfile(infile: String, mut outfile: String) {
     let cipher = Cipher::aes_256_cbc();
     let data = fs::read(&infile)
-        .expect("Should have been able to read the file");
+    .expect(&format!("Error: failed to read file {}", &infile));
     let mut key = String::new();
     let mut iv = String::new();
     print!("Enter key(256 bit): ");
     io::stdout().flush().unwrap();
     io::stdin()
         .read_line(&mut key)
-        .expect("Failed to read line");
+        .expect("Failed to read key");
     key = key.trim().to_string();
 
     print!("Enter iv(128 bit): ");
     io::stdout().flush().unwrap();
     io::stdin()
         .read_line(&mut iv)
-        .expect("Failed to read line");
+        .expect("Failed to read IV");
     iv = iv.trim().to_string();
 
     let key = hex::decode(key).expect("Failed to raw get key");
@@ -122,9 +122,9 @@ fn decryptfile(infile: String, mut outfile: String) {
         outfile = format!("{}.dec.{}", infilename, infileext);
     }
     if Path::new(&outfile).is_file() {
-        println!("Error: output file already exists");
+        println!("Error: output file already exists {}", &outfile);
         return
     }
-    fs::File::create(&outfile).expect("Unable to create file");
-    fs::write(&outfile, datadec).expect("Unable to write file");
+    fs::File::create(&outfile).expect(&format!("Unable to create file {}", &outfile));
+    fs::write(&outfile, datadec).expect(&format!("Unable to write file {}", &outfile));
 }
