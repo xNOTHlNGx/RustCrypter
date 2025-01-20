@@ -78,5 +78,5 @@ Distributed under the DFC License. See [DFC License](https://github.com/xNOTHlNG
 - Telegram: [@xNOTHlNGx](https://t.me/xNOTHlNGx) 
 - Email: [not_a_nothing@proton.me](mailto:not_a_nothing@proton.me)
 
-Project Link: [https://github.com/xNOTHlNGx/system-destroyer](https://github.com/xNOTHlNGx/rustcrypter)
+Project Link: [https://github.com/xNOTHlNGx/rustcrypter](https://github.com/xNOTHlNGx/rustcrypter)
 
