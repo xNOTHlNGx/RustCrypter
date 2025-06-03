@@ -30,7 +30,7 @@ This project uses cross-rs for cross compilation for different systems and opens
 To build this program from source, you first need to install the rust toolchain and compiler. You can install it on UNIX-like systems using
 - Linux/MacOS
    ```sh
-   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --help
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    ```
 On Windows, you can just download and run [rustup-init.exe](https://static.rust-lang.org/rustup/dist/i686-pc-windows-gnu/rustup-init.exe)
 ### Installation
